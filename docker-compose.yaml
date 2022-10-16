@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  frontend:
+    image: contacts-frontend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: development
+    environment:
+      NODE_ENV: production
+    ports:
+      - 4200:4200
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGODB_DATABASE="contactdb"
+    volumes:
+      - mongo-data:/data/contactdb
+
+volumes:
+  mongo-data:
