@@ -13,6 +13,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+  app.enableCors({
+    allowedHeaders: ['content-type'],
+    origin: 'http://localhost:4200',
+    credentials: true,
+  });
   const port = process.env.PORT || 3333;
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(port);
