@@ -1,0 +1,30 @@
+<div
+  [ngClass]="{}"
+  class="flex flex-col space-y-4 md:flex-row md:space-x-4 my-2 border-[1px] border-gray-200 rounded-sm p-2"
+>
+  <div class="basis-1/5 flex items-center">
+    <img class="mx-2 rounded-full bg-blue-500" src="assets/images/person-icon.png" width="40" height="40" alt="User icon" />
+    <div class="ml-2">
+      <span class="block">Name</span>
+      <span class="font-bold">{{ contact.name }}</span>
+    </div>
+  </div>
+  <div class="basis-1/5">
+    <span class="block">Adress</span>
+    <span class="font-bold">{{ contact.address }}</span>
+  </div>
+  <div class="basis-1/5">
+    <span class="block">Phone</span>
+    <span class="font-bold">{{ contact.phone }}</span>
+  </div>
+  <div class="basis-1/5">
+      <span class="block">Email</span>
+      <span class="font-bold">{{ contact.email }}</span>
+  </div>
+  <div class="flex items-center space-x-2">
+    <button aria-label="Edit contact">Edit</button>
+    <button aria-label="Delete contact"
+      (click)="onDelete(contact)"      
+    >Remove</button>
+  </div>
+</div>

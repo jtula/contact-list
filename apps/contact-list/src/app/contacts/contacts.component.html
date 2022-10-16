@@ -1,0 +1,13 @@
+<section>
+  <div class="flex justify-end">
+    <contact-list-button options="hover:bg-gray-200" text="{{showAddContact ? 'Close Form' : '+ Add Contact'}}" (btnClick)="toggleAddContact()"></contact-list-button>
+  </div>
+  <contact-list-add-contact (addContactFn)="addContact($event)"></contact-list-add-contact>
+  <div class="rounded-sm shadow-md px-3 py-6 mt-4 bg-white">
+    <contact-list-contact
+    *ngFor="let contact of contacts"
+    [contact]="contact"
+    (deleteContactFn)="deleteContact(contact)"
+    ></contact-list-contact>
+  </div>
+</section>
