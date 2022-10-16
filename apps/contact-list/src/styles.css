@@ -1,1 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* You can add global styles to this file, and also import other style files */
+@layer base {
+  @font-face {
+    font-family: 'Gilroy';
+    src: url('/assets/Gilroy-Regular.woff2') format('woff2');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'GilroySemiBold';
+    src: url('/assets/Gilroy-SemiBold.woff2') format('woff2');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'GilroyBold';
+    src: url('/assets/Gilroy-Bold.woff2') format('woff2');
+    font-display: swap;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+      
+}
