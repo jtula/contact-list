@@ -1,9 +1,7 @@
-<div style="text-align: center">
-  <h1>Welcome to contact-list!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-    alt="Nx - Smart, Fast and Extensible Build System"
-  />
+<div class="bg-gray-100 flex flex-col min-h-screen">
+  <contact-list-navbar></contact-list-navbar>
+  <main class="mx-3 my-6">
+    <contact-list-contacts></contact-list-contacts>
+  </main>
 </div>
-<div>Message: {{ hello$ | async | json }}</div>
+<router-outlet></router-outlet>

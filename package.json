@@ -10,8 +10,8 @@
     "test": "nx test",
     "start:api": "nx serve --project=api",
     "start:app": "nx serve --project=contact-list",
-    "build:api": "nx build --project=api",
-    "build:app": "nx build --project=contact-list"
+    "build-prod": "ng build --prod --app=contact-list && gzip -r dist/*.js",
+    "serve-prod": "npm run build-prod && docker-compose up"
   },
   "private": true,
   "dependencies": {

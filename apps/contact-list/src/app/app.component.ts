@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@contact-list/api-interfaces';
+import { IContact } from '@contact-list/api-interfaces';
 
 @Component({
   selector: 'contact-list-root',
@@ -8,6 +8,6 @@ import { Message } from '@contact-list/api-interfaces';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
+  hello$ = this.http.get<IContact>('/api/contact');
   constructor(private http: HttpClient) {}
 }
