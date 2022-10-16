@@ -1,0 +1,41 @@
+<form *ngIf="showAddContact" ngNativeValidate class="add-form" (ngSubmit)="onSubmit()">
+<div class="my-2 flex flex-col space-y-2 md:flex-row items-center md:space-x-2 md:space-y-0">
+    <input
+      class="rounded-sm text-sm px-4 py-1.5"
+      type="text"
+      name="name"
+      required
+      [(ngModel)]="name"
+      id="name"
+      placeholder="Name"
+    />
+    <input
+      class="rounded-sm text-sm px-4 py-1.5"
+      type="text"
+      name="address"
+      required
+      [(ngModel)]="address"
+      id="address"
+      placeholder="Address"
+    />
+    <input
+      class="rounded-sm text-sm px-4 py-1.5"
+      type="text"
+      required
+      name="phone"
+      [(ngModel)]="phone"
+      id="phone"
+      placeholder="Phone"
+    />
+    <input
+      class="rounded-sm text-sm px-4 py-1.5"
+      type="email"
+      name="email"
+      required
+      [(ngModel)]="email"
+      id="email"
+      placeholder="Email"
+    />
+  <contact-list-button type="submit" options="hover:bg-gray-200" class="" text="Save Contact" ></contact-list-button>
+</div>
+</form>
