@@ -16,7 +16,7 @@ export class AddContactComponent implements OnInit, OnDestroy {
   phone = '';
   email = '';
 
-  showAddContact = true;
+  showAddContact = false;
   subscription: Subscription;
 
   constructor(private uiService: UiService) {
@@ -28,7 +28,11 @@ export class AddContactComponent implements OnInit, OnDestroy {
   ngOnInit(): void { }
   
   ngOnDestroy() {
-      this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
+  }
+
+  toggleAddContact() {
+    this.uiService.toggleAddContact();
   }
 
   onSubmit() {

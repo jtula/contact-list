@@ -36,6 +36,9 @@
       id="email"
       placeholder="Email"
     />
-  <contact-list-button type="submit" options="hover:bg-gray-200" class="" text="Save Contact" ></contact-list-button>
+  <div class="flex space-x-2">
+    <contact-list-iconbutton type="submit" image="check.svg" alt="Save contact" ></contact-list-iconbutton>
+    <contact-list-iconbutton image="close.svg" alt="Close add contact form" (btnClick)="toggleAddContact()"></contact-list-iconbutton>
+  </div>
 </div>
 </form>

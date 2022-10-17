@@ -10,6 +10,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { ButtonComponent } from './button/button.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { ContactComponent } from './contact/contact.component';
+import { IconbuttonComponent } from './iconbutton/iconbutton.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ContactComponent } from './contact/contact.component';
     ButtonComponent,
     AddContactComponent,
     ContactComponent,
+    IconbuttonComponent,
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule],
   providers: [],
