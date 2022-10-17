@@ -11,7 +11,8 @@ import { UiService } from '../services/ui.service';
 })
 export class ContactComponent implements OnInit {
   @Input() contact!: IContact;
-  @Output() deleteContactFn: EventEmitter<IContact> = new EventEmitter();
+  @Output() modalFn: EventEmitter<any> = new EventEmitter();
+  @Output() deleteContactFn: EventEmitter<string> = new EventEmitter();
   @Output() saveContactFn: EventEmitter<any> = new EventEmitter();
   subscription: Subscription;
   editMode = false;
@@ -30,9 +31,13 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onDelete(contact: IContact) {
-    this.deleteContactFn.emit(contact);
+  onDelete(contactId: string) {
+    this.deleteContactFn.emit(contactId);
   } 
+
+  onToggleModal(contactId: string) {
+    this.uiService.toggleModal(contactId);
+  }
 
   onEdit(contact: IContact) {
     this._id = contact._id

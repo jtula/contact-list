@@ -12,6 +12,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { ContactComponent } from './contact/contact.component';
 import { IconbuttonComponent } from './iconbutton/iconbutton.component';
 import { TagComponent } from './tag/tag.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TagComponent } from './tag/tag.component';
     ContactComponent,
     IconbuttonComponent,
     TagComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

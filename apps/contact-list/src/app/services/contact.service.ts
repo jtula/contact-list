@@ -30,8 +30,8 @@ export class ContactService {
     return this.http.put<IContact>(url, contact, httpOptions);
   }
 
-  deleteContact(contact: IContact): Observable<IContact> {
-    const url = `${this.apiUrl}/${contact._id}`
+  deleteContact(contactId: string): Observable<IContact> {
+    const url = `${this.apiUrl}/${contactId}`
     return this.http.delete<IContact>(url)
   }
 }

@@ -1,5 +1,6 @@
 <section>
   <div class="flex justify-end">
+    <contact-list-modal (modalFn)="deleteContact($event)"></contact-list-modal>
     <contact-list-button options="hover:bg-gray-200" text="+ Add Contact" (btnClick)="toggleAddContact()"></contact-list-button>
   </div>
   <contact-list-add-contact (addContactFn)="addContact($event)"></contact-list-add-contact>
@@ -7,8 +8,7 @@
     <contact-list-contact
     *ngFor="let contact of contacts"
     [contact]="contact"
-    (deleteContactFn)="deleteContact(contact)"    
-    (saveContactFn)="editContact($event)"    
+    (saveContactFn)="editContact($event)"
     ></contact-list-contact>
   </div>
 </section>

@@ -32,12 +32,13 @@ export class ContactsComponent implements OnInit, OnDestroy {
     this.uiService.toggleAddContact();
   }
 
-  deleteContact(contact: IContact) {
+  deleteContact(contactId: string) {    
     this.contactService
-      .deleteContact(contact)
+      .deleteContact(contactId)
       .subscribe(
-        () => (this.contacts = this.contacts.filter((t) => t._id !== contact._id))
+        () => (this.contacts = this.contacts.filter((t) => t._id !== contactId))
       );
+    this.uiService.toggleModal('');
   }
 
   editContact(contact: IContact) {
