@@ -7,7 +7,7 @@ export class Contact {
    @Prop()
    address: string;
    @Prop()
-   phone: number;
+   phone: string;
    @Prop()
    email: string;
 }

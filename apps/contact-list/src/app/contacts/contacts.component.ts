@@ -40,6 +40,16 @@ export class ContactsComponent implements OnInit, OnDestroy {
       );
   }
 
+  editContact(contact: IContact) {
+    this.contactService.editContact(contact).subscribe(contact => {
+      const index = this.contacts.findIndex(c => c._id === contact._id)
+
+      if(index !== -1) {
+        this.contacts[index] = contact
+      }
+    });
+  }
+
   addContact(contact: IContact) {
     this.contactService.addContact(contact).subscribe((contact: any) => this.contacts.push(contact.newContact));
   }

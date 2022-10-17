@@ -4,14 +4,15 @@
   "license": "MIT",
   "scripts": {
     "ng": "nx",
+    "nx": "nx",
     "postinstall": "node ./decorate-angular-cli.js",
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "start:api": "nx serve --project=api",
-    "start:app": "nx serve --project=contact-list",
-    "build-prod": "ng build --prod --app=contact-list && gzip -r dist/*.js",
-    "serve-prod": "npm run build-prod && docker-compose up"
+    "serve:api": "nx serve api",
+    "serve:all": "nx run-many --target=serve --all",
+    "build:api": "nx build api",
+    "build:all": "nx build contact-list && nx build api"
   },
   "private": true,
   "dependencies": {

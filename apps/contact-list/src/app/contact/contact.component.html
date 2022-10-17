@@ -1,32 +1,48 @@
+<form ngNativeValidate (ngSubmit)="onSave()">
 <div
-  class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 my-2 border-[1px] border-gray-200 rounded-sm p-2"
+  class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 my-3 border-[1px] border-gray-200 rounded-sm p-2 hover:bg-gray-100"
 >
   <div class="basis-2/5 flex items-center">
     <img class="mx-2 rounded-full bg-blue-500" src="assets/images/person-icon.png" width="40" height="40" alt="User icon" />
     <div class="ml-2 flex flex-col">
       <span class="block">Name</span>
-      <span class="font-bold">{{ contact.name }}</span>
+      <span *ngIf="!editMode" class="font-bold">{{ contact.name }}</span>
+      <input id="name" required [(ngModel)]="name" class="text-sm pl-2 py-0.5" *ngIf="editMode" type="text" name="name" />
     </div>
   </div>
   <div class="basis-2/5">
     <span class="block">Address</span>
-    <span class="font-bold">{{ contact.address }}</span>
+    <span *ngIf="!editMode" class="font-bold">{{ contact.address }}</span>
+    <input id="address" required [(ngModel)]="address" class="text-sm pl-2 py-0.5" *ngIf="editMode" type="text" name="address" />
   </div>
   <div class="basis-1/5">
     <span class="block">Phone</span>
-    <span class="font-bold">{{ contact.phone }}</span>
+    <span *ngIf="!editMode" class="font-bold">{{ contact.phone }}</span>
+    <input id="phone" required [(ngModel)]="phone" class="text-sm pl-2 py-0.5" *ngIf="editMode" type="text" name="phone" />
   </div>
   <div class="basis-1/5">
-      <span class="block">Email</span>
-      <span class="font-bold">{{ contact.email }}</span>
+    <span class="block">Email</span>
+    <span *ngIf="!editMode" class="font-bold">{{ contact.email }}</span>
+    <input id="email" required [(ngModel)]="email" class="text-sm pl-2 py-0.5" *ngIf="editMode" type="email" name="email" />
   </div>
   <div class="flex items-center space-x-2">
-    <button aria-label="Edit contact" class="hover:bg-gray-200 rounded-full p-2 transition ease-in-out duration-300">
+    <button *ngIf="!editMode" aria-label="Edit contact" 
+      disabled="{{editContactId}}"
+      (click)="onEdit(contact)"      
+      class="hover:bg-gray-200 rounded-full p-2 transition ease-in-out duration-300">
       <svg class="w-5 h-5 hover:fill-gray-700 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" >
         <path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" />
       </svg>
+    </button> 
+    <button *ngIf="editMode" aria-label="Save contact" 
+      type="submit"
+      class="hover:bg-gray-200 rounded-full p-2 transition ease-in-out duration-300">
+      <svg class="w-5 h-5 hover:fill-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+      </svg>
     </button>
-    <button aria-label="Delete contact"
+    <button type="button" aria-label="Delete contact"
+      disabled="{{editContactId}}"
       (click)="onDelete(contact)"
       class="hover:bg-gray-200 rounded-full p-2 transition ease-in-out duration-300"      
     >
@@ -36,3 +52,4 @@
   </button>
   </div>
 </div>
+</form>

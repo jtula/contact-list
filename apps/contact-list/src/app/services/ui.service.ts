@@ -7,6 +7,9 @@ import { Observable, Subject } from 'rxjs';
 export class UiService {
   private showAddContact = false;
   private subject = new Subject<any>();
+  private editContactId = '';
+  private subjectEditMode = new Subject<any>();
+
 
   constructor() { }
 
@@ -15,7 +18,16 @@ export class UiService {
     this.subject.next(this.showAddContact)
   }
 
+  toggleEditContactId(id: string): void {
+    this.editContactId = id
+    this.subjectEditMode.next(this.editContactId)
+  }
+
   onToggle(): Observable<any> {
     return this.subject.asObservable()
+  }
+  
+  onToggleEditMode(): Observable<any> {
+    return this.subjectEditMode.asObservable()
   }
 }

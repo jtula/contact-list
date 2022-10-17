@@ -1,8 +1,7 @@
-import { IsNotEmpty, IsString, IsEmail, MaxLength } from "class-validator";
+import { IsNotEmpty, IsString, IsEmail } from "class-validator";
 
 export class CreateContactDto {
     @IsString()
-    @MaxLength(50)
     @IsNotEmpty()
     readonly name: string;
 
@@ -11,8 +10,7 @@ export class CreateContactDto {
     readonly address: string;
     
     @IsString()
-    @IsNotEmpty()
-    @MaxLength(50)
+    @IsNotEmpty()    
     readonly phone: string;
 
     @IsString()

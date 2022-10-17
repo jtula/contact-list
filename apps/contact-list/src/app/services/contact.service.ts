@@ -25,6 +25,11 @@ export class ContactService {
     return this.http.post<IContact>(this.apiUrl, contact, httpOptions);
   }
 
+  editContact(contact: any): Observable<IContact> {
+    const url = `${this.apiUrl}/${contact._id}`
+    return this.http.put<IContact>(url, contact, httpOptions);
+  }
+
   deleteContact(contact: IContact): Observable<IContact> {
     const url = `${this.apiUrl}/${contact._id}`
     return this.http.delete<IContact>(url)
