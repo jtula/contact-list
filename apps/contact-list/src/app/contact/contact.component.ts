@@ -18,7 +18,7 @@ export class ContactComponent implements OnInit {
   editMode = false;
   editContactId = '';
   _id = '';
-  name = '';
+  fullname = '';
   address = '';
   phone = '';
   email = '';
@@ -41,7 +41,7 @@ export class ContactComponent implements OnInit {
 
   onEdit(contact: IContact) {
     this._id = contact._id
-    this.name = contact.name
+    this.fullname = contact.name || ''
     this.address = contact.address
     this.phone = contact.phone
     this.email = contact.email
@@ -54,7 +54,7 @@ export class ContactComponent implements OnInit {
     this.uiService.toggleEditContactId('');
     const contactForm = {
       _id: this._id,
-      name: this.name,
+      name: this.fullname,
       address: this.address,
       phone: this.phone,
       email: this.email
@@ -63,7 +63,7 @@ export class ContactComponent implements OnInit {
     this.saveContactFn.emit(contactForm)
 
     this._id = ''
-    this.name = ''
+    this.fullname = ''
     this.address = ''
     this.phone = ''
     this.email = ''

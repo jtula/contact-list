@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ContactsComponent } from './contacts/contacts.component';
@@ -30,8 +29,7 @@ import { ModalComponent } from './modal/modal.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
