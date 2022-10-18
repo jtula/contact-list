@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 import { ContactSchema } from './schema/contact.schema';
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://admin:admin@localhost:27017', { dbName: 'contactdb'}), 
+  imports: [MongooseModule.forRoot('mongodb://admin:admin@mongodb:27017', { dbName: 'contactdb'}), 
             MongooseModule.forFeature([{ name: 'Contact', schema: ContactSchema }])],
   controllers: [AppController],
   providers: [AppService],

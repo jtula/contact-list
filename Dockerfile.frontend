@@ -1,0 +1,19 @@
+FROM node:16.18-alpine3.15 AS development
+
+
+WORKDIR /home/contacts-app
+
+COPY ["package*.json", "nx.json", "decorate-angular-cli.js", "./"]
+
+RUN npm config set fetch-retry-maxtimeout 1200000
+RUN npm install
+
+COPY . ./
+
+RUN npm install -g @angular/cli 
+RUN npm install -g @nrwl/cli@12.0.1
+
+EXPOSE 4200/tcp 49153/tcp
+
+RUN npm run build
+CMD npm run start

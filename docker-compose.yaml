@@ -1,18 +1,33 @@
 version: "3.9"
 services:
-  constacts-frontend:
-    image: frontend
+  app:
+    build:
+      dockerfile: ./Dockerfile.frontend
+      context: .
+      target: development
+    # command: npm run serve:all
+    volumes:
+      - .:/home/contacts-app
+      - /home/contacts-app/node_modules
     ports:
-      - '80:8080'
-    networks:
-      - nesjs-network
+      - '4200:4200'
+      - '49153:49153'
+    links:
+      - api
 
-  constacts-api:
-    image: api
+  api:
+    build:
+      dockerfile: ./Dockerfile.api
+      context: .
+      target: development
+    environment:
+       - MONGO_URI=mongodb://admin:admin@mongodb:27017/contactdb
+    # command: npm run start api
+    volumes:
+      - .:/home/contacts-app
+      - /home/contacts-app/node_modules
     ports:
       - '3333:3333'
-    networks:
-      - nesjs-network
     depends_on:
       - mongodb
     restart: unless-stopped
@@ -26,8 +41,6 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=admin
       - MONGODB_DATABASE="contactdb"
-    networks:
-      - nesjs-network
     volumes:
       - mongo-data:/data/contactdb
     restart: always

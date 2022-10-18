@@ -1,0 +1,32 @@
+# Name Image development (can be anything)
+FROM node:16.18-alpine3.15 AS development
+# Specify Working directory inside container
+WORKDIR /home/contacts-app
+
+COPY ["package*.json", "nx.json", "decorate-angular-cli.js", "./"]
+# Install deps inside container
+RUN npm config set fetch-retry-maxtimeout 1200000
+RUN npm install
+RUN npm install -g @angular/cli 
+RUN npm install -g @nrwl/cli
+COPY . ./
+RUN npm run build:api
+CMD npm run serve:api
+
+EXPOSE 3333
+
+# Build another image named production
+FROM node:16.18-alpine3.15 AS production
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+# Set work dir
+WORKDIR /home/contacts-app
+
+COPY --from=development /home/contacts-app .
+
+EXPOSE 3333
+
+# run app
+CMD node ./dist/apps/api/main.js
