@@ -12,12 +12,17 @@ import { UiService } from '../services/ui.service';
 export class ContactsComponent implements OnInit, OnDestroy {
   showAddContact = false;
   subscription: Subscription;
+  searchSubscription: Subscription;
+  searchQuery!: string;
   contacts: IContact[] = [];
 
   constructor(private uiService: UiService, private contactService: ContactService) {
     this.subscription = this.uiService
       .onToggle()
       .subscribe((value) => (this.showAddContact = value));
+    this.searchSubscription = this.uiService
+      .onSearch()
+      .subscribe((value) => (this.searchQuery = value));
   }
 
   ngOnInit(): void {
@@ -26,6 +31,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.searchSubscription.unsubscribe();
   }
   
   toggleAddContact() {
@@ -49,6 +55,10 @@ export class ContactsComponent implements OnInit, OnDestroy {
         this.contacts[index] = contact
       }
     });
+  }
+
+  searchContact(query: string) {
+    this.contactService.searchContact(query).subscribe(contacts => console.log('response', contacts))
   }
 
   addContact(contact: IContact) {

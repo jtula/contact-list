@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { UiService } from '../services/ui.service';
 
 @Component({
   selector: 'contact-list-navbar',
@@ -6,7 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor() {}
+  @Output() searchContactFn: EventEmitter<any> = new EventEmitter();
+  query = '';
+
+  constructor(private uiService: UiService) {}
 
   ngOnInit(): void {}
+
+  searchContact() {
+    this.uiService.searchInputValue(this.query)
+  }
+
+  clearSearchInput() {
+    this.query = ''
+  }
 }

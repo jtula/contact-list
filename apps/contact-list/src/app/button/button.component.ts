@@ -9,6 +9,7 @@ export class ButtonComponent implements OnInit {
   @Input() text!: string;
   @Input() options!: string;
   @Input() optionsText!: string;
+  @Input() disabled = false;
   @Output() btnClick = new EventEmitter();
 
   constructor() {}

@@ -21,6 +21,11 @@ export class ContactService {
     return this.http.get<IContact[]>(this.apiUrl)
   }
 
+  searchContact(query: string): Observable<IContact[]> {
+    const url = `${this.apiUrl}?search=${query}`
+    return this.http.get<IContact[]>(url)
+  }
+
   addContact(contact: IContact): Observable<IContact> {
     return this.http.post<IContact>(this.apiUrl, contact, httpOptions);
   }

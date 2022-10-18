@@ -11,9 +11,10 @@ export class UiService {
   private subject = new Subject<any>();
   private subjectModal = new Subject<any>();
   private subjectEditMode = new Subject<any>();
+  private subjectSearch = new Subject<any>();
+  private searchQuery = '';
   private editContactId = '';
   private deleteContactId = '';
-
 
   constructor() { }
 
@@ -33,6 +34,15 @@ export class UiService {
     this.subjectEditMode.next(this.editContactId)
   }
 
+  searchInputValue(query: string): void {
+    this.searchQuery = query
+    this.subjectSearch.next(this.searchQuery)
+  }
+
+  getDeleteContactId() : string {
+    return this.deleteContactId
+  }
+
   onToggle(): Observable<any> {
     return this.subject.asObservable()
   }
@@ -40,9 +50,9 @@ export class UiService {
   onToggleModal(): Observable<any> {
     return this.subjectModal.asObservable()
   }
-
-  getDeleteContactId() : string {
-    return this.deleteContactId
+  
+  onSearch(): Observable<any> {
+    return this.subjectSearch.asObservable()
   }
  
   onToggleEditMode(): Observable<any> {
