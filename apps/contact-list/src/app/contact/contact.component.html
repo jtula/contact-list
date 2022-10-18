@@ -7,23 +7,23 @@
     <div class="ml-2 flex flex-col">
       <span class="block">Name</span>
       <span *ngIf="!editMode" class="font-bold">{{ contact && contact.name || ''}}</span>
-      <input id="fullname" required [(ngModel)]="fullname" class="text-sm pl-2 py-0.5" *ngIf="editMode" type="text" name="fullname" />
+      <input id="fullname" required [(ngModel)]="fullname" class="text-sm pl-2 py-1.5" *ngIf="editMode" type="text" name="fullname" />
     </div>
   </div>
   <div class="basis-2/5">
     <span class="block">Address</span>
     <span *ngIf="!editMode" class="font-bold">{{ contact && contact.address || '' }}</span>
-    <input id="address" required [(ngModel)]="address" class="text-sm pl-2 py-0.5" *ngIf="editMode" type="text" name="address" />
+    <input id="address" required [(ngModel)]="address" class="text-sm pl-2 py-1.5" *ngIf="editMode" type="text" name="address" />
   </div>
   <div class="basis-1/5">
     <span class="block">Phone</span>
     <span *ngIf="!editMode" class="font-bold">{{ contact && contact.phone || '' }}</span>
-    <input id="phone" required [(ngModel)]="phone" class="text-sm pl-2 py-0.5" *ngIf="editMode" type="text" name="phone" />
+    <input id="phone" required [(ngModel)]="phone" class="text-sm pl-2 py-1.5" *ngIf="editMode" type="text" name="phone" />
   </div>
   <div class="basis-1/5">
     <span class="block">Email</span>
     <span *ngIf="!editMode" class="font-bold">{{ contact && contact.email || ''}}</span>
-    <input id="email" required [(ngModel)]="email" class="text-sm pl-2 py-0.5" *ngIf="editMode" type="email" name="email" />
+    <input id="email" required [(ngModel)]="email" class="text-sm pl-2 py-1.5" *ngIf="editMode" type="email" name="email" />
   </div>
   <div class="flex items-center space-x-2">
     <button *ngIf="!editMode" aria-label="Edit contact" 
