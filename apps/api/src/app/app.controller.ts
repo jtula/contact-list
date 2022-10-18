@@ -1,9 +1,9 @@
+import { IContact } from '@contact-list/api-interfaces';
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Query, Res } from '@nestjs/common';
-
-// import { IContact } from '@contact-list/api-interfaces';
 
 import { AppService } from './app.service';
 import { CreateContactDto } from './dto/create-contact.dto';
+import { GetContactsFilterDto } from './dto/get-contacts-filter.dto';
 import { UpdateContactDto } from './dto/update-contact.dto';
 
 @Controller('contacts')
@@ -11,9 +11,14 @@ export class AppController {
   constructor(private readonly contactService: AppService) {}
 
   @Get()
-  async getContacts(@Res() response) {
+  async getContacts(@Query() filterDto: GetContactsFilterDto, @Res() response) : Promise<IContact[]> {
     try {
-      const contacts = await this.contactService.getAllContacts();
+      let contacts = []
+      if(Object.keys(filterDto).length) {
+        contacts = await this.contactService.getContactsWithFilters(filterDto)
+      } else {
+        contacts = await this.contactService.getAllContacts();
+      }
       return response.status(HttpStatus.OK).json(contacts);
     } catch (err) {
       return response.status(err.status).json(err.response);
@@ -21,7 +26,7 @@ export class AppController {
   }
 
   @Get('filter')
-  async filterContacts(@Query() query, @Res() response) {
+  async filterContacts(@Query() query, @Res() response): Promise<IContact[]> {
     try {
       const contacts = await this.contactService.filterContacts(query);
       return response.status(HttpStatus.OK).json(contacts);
@@ -31,7 +36,7 @@ export class AppController {
   }
 
   @Get('/:id')
-  async getContact(@Res() response, @Param('id') contactId: string) {
+  async getContact(@Res() response, @Param('id') contactId: string): Promise<IContact> {
     try {
         const existingContact = await
         this.contactService.getContact(contactId);

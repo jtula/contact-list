@@ -4,6 +4,7 @@ import { Model } from "mongoose";
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateContactDto } from './dto/create-contact.dto';
 import { UpdateContactDto } from './dto/update-contact.dto';
+import { GetContactsFilterDto } from './dto/get-contacts-filter.dto';
 
 @Injectable()
 export class AppService {
@@ -13,6 +14,19 @@ export class AppService {
   async createContact(createContactDto: CreateContactDto): Promise<IContact> {
     const newContact = await new this.contactModel(createContactDto);
     return newContact.save();
+  }
+
+  async getContactsWithFilters(filterDto: GetContactsFilterDto) : Promise<IContact[]> {
+    //  todo: filter other parameters
+    const { search } = filterDto;
+    let contacts = await this.getAllContacts()
+
+    if(search) {
+      contacts = contacts.filter(contact => contact.name.includes(search) || 
+        contact.address.includes(search) || contact.phone.includes(search) || 
+        contact.email.includes(search))
+    }
+    return contacts
   }
 
   async filterContacts(query): Promise<IContact[]> {
