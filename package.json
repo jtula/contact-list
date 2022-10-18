@@ -6,7 +6,7 @@
     "ng": "nx",
     "nx": "nx",
     "postinstall": "node ./decorate-angular-cli.js",
-    "start": "nx serve --host 0.0.0.0",
+    "start": "nx serve --host 0.0.0.0 --poll 500",
     "build": "nx build",
     "test": "nx test",
     "serve:api": "nx serve api",
