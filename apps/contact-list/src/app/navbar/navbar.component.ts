@@ -16,9 +16,11 @@ export class NavbarComponent implements OnInit {
 
   searchContact() {
     this.uiService.searchInputValue(this.query)
+    this.searchContactFn.emit(this.query)
   }
 
   clearSearchInput() {
     this.query = ''
+    this.uiService.searchInputValue('')
   }
 }

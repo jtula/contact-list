@@ -22,7 +22,10 @@ export class ContactsComponent implements OnInit, OnDestroy {
       .subscribe((value) => (this.showAddContact = value));
     this.searchSubscription = this.uiService
       .onSearch()
-      .subscribe((value) => (this.searchQuery = value));
+      .subscribe((value) => {
+        this.searchQuery = value
+        this.searchContact(value)
+      });
   }
 
   ngOnInit(): void {
@@ -58,7 +61,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   searchContact(query: string) {
-    this.contactService.searchContact(query).subscribe(contacts => console.log('response', contacts))
+    this.contactService.searchContact(query).subscribe(contacts => this.contacts = contacts)
   }
 
   addContact(contact: IContact) {

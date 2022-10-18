@@ -22,9 +22,9 @@ export class AppService {
     let contacts = await this.getAllContacts()
 
     if(search) {
-      contacts = contacts.filter(contact => contact.name.includes(search) || 
-        contact.address.includes(search) || contact.phone.includes(search) || 
-        contact.email.includes(search))
+      contacts = contacts.filter(contact => contact.name.toLowerCase().includes(search.toLowerCase()) || 
+        contact.address.toLowerCase().includes(search.toLowerCase()) || contact.phone.toLowerCase().includes(search.toLowerCase()) || 
+        contact.email.toLowerCase().includes(search.toLowerCase()))
     }
     return contacts
   }
