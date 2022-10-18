@@ -4,9 +4,9 @@
 >
   <div class="col-span-2 flex items-center">
     <img class="mx-2 rounded-full bg-blue-500" src="assets/images/person-icon.png" width="40" height="40" alt="User icon" />
-    <div class="ml-2 flex flex-col break-words md:truncate">
+    <div [ngClass]="!editMode ? 'break-words md:truncate':''" class="ml-2 flex flex-col">
       <h3 >Name</h3>
-      <p *ngIf="!editMode" class="md:truncate font-bold">{{ contact && contact.name || ''}}</p>
+      <p *ngIf="!editMode" class="break-words md:truncate font-bold">{{ contact && contact.name || ''}}</p>
       <input id="fullname" required [(ngModel)]="fullname" class="text-sm pl-2 py-1.5" *ngIf="editMode" type="text" name="fullname" />
     </div>
   </div>
