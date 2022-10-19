@@ -20,17 +20,20 @@ With npm:
  - API: http://localhost:3333/api/contacts
  - MONGO_URI=mongodb://admin:admin@mongodb:27017/contactdb
 
+
 ## Tests and code coverage
  `npm run test`
  `ng test --no-watch --code-coverage`
+
 
 ## Exposed Ports
  - 4200  : Angular app
  - 3333  : Api
  - 27017 : Mongo
 
-## Lighthouse
 
+## Lighthouse
+![alt text](https://github.com/jtula/contact-list/blob/main/lighthouse.jpg?raw=true)
 
 
 
