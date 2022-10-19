@@ -13,7 +13,9 @@ Command:
 `docker-compose up`
 
 With npm:
+
  `npm install`
+ 
  `npm run serve:all`
 
  - Frontend: http://localhost:4200
@@ -23,6 +25,7 @@ With npm:
 
 ## Tests and code coverage
  `npm run test`
+ 
  `ng test --no-watch --code-coverage`
 
 
