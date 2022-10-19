@@ -10,8 +10,8 @@
     "build": "nx build",
     "test": "nx test",
     "serve:api": "nx serve api",
-    "serve:all": "nx run-many --target=serve --all",
     "build:api": "nx build api",
+    "serve:all": "nx run-many --target=serve --all",
     "build:all": "nx build contact-list && nx build api"
   },
   "private": true,
