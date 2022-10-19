@@ -10,5 +10,6 @@
     [contact]="contact"
     (saveContactFn)="editContact($event)"
     ></contact-list-contact>
+    <p *ngIf="contacts.length === 0" class="text-red-400 text-center">Contacts not found!</p>
   </div>
 </section>

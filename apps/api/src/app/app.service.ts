@@ -11,6 +11,10 @@ export class AppService {
 
   constructor(@InjectModel('Contact') private contactModel:Model<IContact>) { }
 
+  getApiHome() {
+    return { message: 'Hi!' };
+  }
+
   async createContact(createContactDto: CreateContactDto): Promise<IContact> {
     const newContact = await new this.contactModel(createContactDto);
     return newContact.save();
