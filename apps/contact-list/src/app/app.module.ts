@@ -10,7 +10,6 @@ import { ButtonComponent } from './button/button.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { ContactComponent } from './contact/contact.component';
 import { IconbuttonComponent } from './iconbutton/iconbutton.component';
-import { TagComponent } from './tag/tag.component';
 import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
@@ -22,7 +21,6 @@ import { ModalComponent } from './modal/modal.component';
     AddContactComponent,
     ContactComponent,
     IconbuttonComponent,
-    TagComponent,
     ModalComponent,
   ],
   imports: [

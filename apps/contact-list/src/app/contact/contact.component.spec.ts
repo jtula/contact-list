@@ -22,4 +22,9 @@ describe('ContactComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a header contact titles', () => {
+    const contactHeader = fixture.nativeElement.querySelectorAll('h3');
+    expect(contactHeader).toHaveLength(4)
+  });
 });
