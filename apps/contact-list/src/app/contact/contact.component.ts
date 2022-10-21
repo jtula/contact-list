@@ -17,11 +17,13 @@ export class ContactComponent implements OnInit {
   subscription: Subscription;
   editMode = false;
   editContactId = '';
-  _id = '';
-  fullname = '';
-  address = '';
-  phone = '';
-  email = '';
+  editContact = {
+    _id: '',
+    fullname: '',
+    address: '',
+    phone: '',
+    email: ''
+  }
 
   constructor(private uiService: UiService, private contactService: ContactService) {
     this.subscription = this.uiService
@@ -40,11 +42,12 @@ export class ContactComponent implements OnInit {
   }
 
   onEdit(contact: IContact) {
-    this._id = contact._id
-    this.fullname = contact.name || ''
-    this.address = contact.address
-    this.phone = contact.phone
-    this.email = contact.email
+    
+    this.editContact._id = contact._id
+    this.editContact.fullname = contact.name
+    this.editContact.address = contact.address
+    this.editContact.phone = contact.phone
+    this.editContact.email = contact.email
     this.editMode = true;
     this.uiService.toggleEditContactId(contact._id);
   }
@@ -52,21 +55,22 @@ export class ContactComponent implements OnInit {
   onSave() {    
     this.editMode = false;
     this.uiService.toggleEditContactId('');
+    
     const contactForm = {
-      _id: this._id,
-      name: this.fullname,
-      address: this.address,
-      phone: this.phone,
-      email: this.email
+      _id: this.editContact._id,
+      name: this.editContact.fullname,
+      address: this.editContact.address,
+      phone: this.editContact.phone,
+      email: this.editContact.email
     }
 
     this.saveContactFn.emit(contactForm)
 
-    this._id = ''
-    this.fullname = ''
-    this.address = ''
-    this.phone = ''
-    this.email = ''
+    this.editContact._id = ''
+    this.editContact.fullname = ''
+    this.editContact.address = ''
+    this.editContact.phone = ''
+    this.editContact.email = ''
   }
 
 }

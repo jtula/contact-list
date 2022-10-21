@@ -1,6 +1,4 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { IContact } from '@contact-list/api-interfaces';
-// import { Contact } from '@contact-list/api-interfaces';
 import { Subscription } from 'rxjs';
 import { UiService } from '../services/ui.service';
 
@@ -11,10 +9,13 @@ import { UiService } from '../services/ui.service';
 })
 export class AddContactComponent implements OnInit, OnDestroy {
   @Output() addContactFn: EventEmitter<any> = new EventEmitter();
-  name = '';
-  address = '';
-  phone = '';
-  email = '';
+
+  newContact = {
+    name: '',
+    address: '',
+    phone: '',
+    email: ''
+  }
 
   showAddContact = false;
   subscription: Subscription;
@@ -36,23 +37,16 @@ export class AddContactComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    if (!this.name || !this.address || !this.phone || !this.email) {
+    if (!this.newContact.name || !this.newContact.address || !this.newContact.phone || !this.newContact.email) {
       alert('Please all inputs are required!');
       return;
     }
+    
+    this.addContactFn.emit(this.newContact);
 
-    const newContact = {
-      name: this.name,
-      address: this.address,
-      phone: this.phone,
-      email: this.email,
-    };
-
-    this.addContactFn.emit(newContact);
-
-    this.name = '';
-    this.address = '';
-    this.phone = '';
-    this.email = '';
+    this.newContact.name = '';
+    this.newContact.address = '';
+    this.newContact.phone = '';
+    this.newContact.email = '';
   }
 }

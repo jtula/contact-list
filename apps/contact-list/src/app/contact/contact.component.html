@@ -7,24 +7,64 @@
     <div [ngClass]="!editMode ? 'break-words md:truncate':''" class="ml-2 flex flex-col">
       <h3>Name</h3>
       <p *ngIf="!editMode" class="break-words md:truncate font-bold">{{ contact && contact.name || ''}}</p>
-      <input id="fullname" required [(ngModel)]="fullname" class="text-sm pl-2 py-1.5" *ngIf="editMode" type="text" name="fullname" />
+      <input 
+        id="fullname" 
+        required 
+        [(ngModel)]="editContact.fullname" 
+        class="w-full text-sm pl-2 py-1.5" 
+        *ngIf="editMode" 
+        type="text" 
+        name="fullname" 
+        #fullname="ngModel"
+        [ngClass]="fullname.invalid && (fullname.dirty || fullname.touched) ? 'focus:outline-none border-2 border-red-500':''"
+        />
+      </div>
     </div>
-  </div>
-  <div class="col-span-2">
-    <h3>Address</h3>
-    <p *ngIf="!editMode" class="break-words md:truncate font-bold">{{ contact && contact.address || '' }}</p>
-    <input id="address" required [(ngModel)]="address" class="text-sm pl-2 py-1.5" *ngIf="editMode" type="text" name="address" />
-  </div>
+    <div class="col-span-2">
+      <h3>Address</h3>
+      <p *ngIf="!editMode" class="break-words md:truncate font-bold">{{ contact && contact.address || '' }}</p>
+      <input
+      id="address" 
+      required 
+      [(ngModel)]="editContact.address" 
+      class="w-full text-sm pl-2 py-1.5" 
+      *ngIf="editMode" 
+      name="address"
+      type="text" 
+      #address="ngModel"
+      [ngClass]="address.invalid && (address.dirty || address.touched) ? 'focus:outline-none border-2 border-red-500':''"
+      />
+    </div>
   <div>
     <h3 class="block">Phone</h3>
     <p *ngIf="!editMode" class="truncate font-bold">{{ contact && contact.phone || '' }}</p>
-    <input id="phone" required [(ngModel)]="phone" class="text-sm pl-2 py-1.5" *ngIf="editMode" type="text" name="phone" />
+    <input 
+      id="phone" 
+      required 
+      [(ngModel)]="editContact.phone" 
+      class="w-full text-sm pl-2 py-1.5"
+      *ngIf="editMode" 
+      type="text" 
+      name="phone"
+      #phone="ngModel"
+      [ngClass]="phone.invalid && (phone.dirty || phone.touched) ? 'focus:outline-none border-2 border-red-500':''"
+    />
   </div>
   <!-- last grid -->
   <div>
     <h3>Email</h3>
     <p *ngIf="!editMode" class="truncate text-justify font-bold">{{ contact && contact.email || ''}}</p>
-    <input id="email" required [(ngModel)]="email" class="text-sm pl-2 py-1.5" *ngIf="editMode" type="email" name="email" />
+    <input 
+      id="email" 
+      required 
+      [(ngModel)]="editContact.email" 
+      class="w-full text-sm pl-2 py-1.5" 
+      *ngIf="editMode" 
+      type="email" 
+      name="email" 
+      #email="ngModel"
+      [ngClass]="email.invalid && (email.dirty || email.touched) ? 'focus:outline-none border-2 border-red-500':''"
+    />
   </div>
     <!-- actions buttons -->
   <div class="justify-self-start md:justify-self-end">

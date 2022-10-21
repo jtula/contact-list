@@ -1,44 +1,52 @@
 <form *ngIf="showAddContact" ngNativeValidate (ngSubmit)="onSubmit()">
 <div class="my-2 flex flex-col space-y-2 md:flex-row items-center md:space-x-2 md:space-y-0">
     <div>
-    <input
-      class="rounded-sm text-sm px-4 py-1.5 "
-      type="text"
-      name="name"
-      required
-      [(ngModel)]="name"
-      id="name"
-      placeholder="Name"
-    />
-  </div>
-    <input
+      <input
+        id="name"
+        name="name"
+        class="form-control rounded-sm text-sm px-4 py-1.5 peer-invalid:border-4 peer-invalid:border-red-400"
+        placeholder="Name"
+        type="text"
+        required
+        [(ngModel)]="newContact.name"
+        #name="ngModel"
+        [ngClass]="name.invalid && (name.dirty || name.touched) ? 'focus:outline-none border-2 border-red-500':''"
+        />
+      </div>
+      <input
+      id="address"
+      placeholder="Address"
       class="rounded-sm text-sm px-4 py-1.5"
       type="text"
       name="address"
       required
-      [(ngModel)]="address"
-      id="address"
-      placeholder="Address"
-    />
-    <input
+      [(ngModel)]="newContact.address"
+      #address="ngModel"
+      [ngClass]="address.invalid && (address.dirty || address.touched) ? 'focus:outline-none border-2 border-red-500':''"
+      />
+      <input
+      id="phone"
+      placeholder="Phone"
       class="rounded-sm text-sm px-4 py-1.5"
       type="text"
       required
       name="phone"
-      [(ngModel)]="phone"
-      id="phone"
-      placeholder="Phone"
-    />
-    <input
+      [(ngModel)]="newContact.phone"
+      #phone="ngModel"
+      [ngClass]="phone.invalid && (phone.dirty || phone.touched) ? 'focus:outline-none border-2 border-red-500':''"
+      />
+      <input
+      id="email"
+      placeholder="Email"
       class="rounded-sm text-sm px-4 py-1.5"
       type="email"
       name="email"
       required
-      [(ngModel)]="email"
-      id="email"
-      placeholder="Email"
-    />
-  <div class="flex space-x-2 shrink-0">
+      [(ngModel)]="newContact.email"
+      #email="ngModel"
+      [ngClass]="email.invalid && (email.dirty || email.touched) ? 'focus:outline-none border-2 border-red-500':''"
+      />
+      <div class="flex space-x-2 shrink-0">
     <contact-list-iconbutton type="submit" image="check.svg" alt="Save contact" ></contact-list-iconbutton>
     <contact-list-iconbutton image="close.svg" alt="Close add contact form" (btnClick)="toggleAddContact()"></contact-list-iconbutton>
   </div>
