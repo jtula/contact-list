@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { IContact } from '@contact-list/api-interfaces';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -12,7 +11,7 @@ export class UiService {
   private subjectModal = new Subject<any>();
   private subjectEditMode = new Subject<any>();
   private subjectSearch = new Subject<any>();
-  private searchQuery = '';
+  private searchQuery: string[] = [];
   private editContactId = '';
   private deleteContactId = '';
 
@@ -34,7 +33,7 @@ export class UiService {
     this.subjectEditMode.next(this.editContactId)
   }
 
-  searchInputValue(query: string): void {
+  searchInputValue(query: string[]): void {
     this.searchQuery = query
     this.subjectSearch.next(this.searchQuery)
   }

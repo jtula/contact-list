@@ -60,7 +60,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
     });
   }
 
-  searchContact(query: string) {
+  searchContact(query: string[]) {
     this.contactService.searchContact(query).subscribe(contacts => this.contacts = contacts)
   }
 

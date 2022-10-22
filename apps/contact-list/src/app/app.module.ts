@@ -11,6 +11,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { ContactComponent } from './contact/contact.component';
 import { IconbuttonComponent } from './iconbutton/iconbutton.component';
 import { ModalComponent } from './modal/modal.component';
+import { BadgetComponent } from './badget/badget.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +23,9 @@ import { ModalComponent } from './modal/modal.component';
     ContactComponent,
     IconbuttonComponent,
     ModalComponent,
+    BadgetComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
+  imports: [BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

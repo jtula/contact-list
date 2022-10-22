@@ -1,10 +1,27 @@
 <header class="bg-terciary h-28 flex items-center">
-  <div class="flex items-center space-x-2 w-full mx-4 lg:mx-16 px-3 h-14 bg-white rounded-sm">
+  <div class="flex relative items-center space-x-2 w-full mx-4 lg:mx-16 px-3 h-14 bg-white rounded-sm">
     <button class="flex items-center flex-none">
       <img width="24" height="24" class="mr-3" src="assets/images/search.svg" alt="Search" aria-label="Search button" />
       <img width="12" height="7" class="" src="assets/images/down.svg" alt="Down" aria-label="Down search button" />
     </button>
-    <input id="search" name="search" [(ngModel)]="query" value="{{query}}" class="w-10 flex-1 h-full focus:outline-none" type="text" aria-label="Search input" (keyup.enter)="searchContact()" />
+    <input  
+    id="search" 
+      name="search" 
+      [(ngModel)]="search" 
+      [value]="search" 
+      class="w-10 flex-1 h-full focus:outline-none" 
+      type="text" 
+      aria-label="Search input" 
+      (keyup.enter)="searchContact()"
+      />
+      <div  class="absolute bg-white left-[52px] flex items-center justify-start">
+        <contact-list-badget      
+          *ngFor="let qry of query; let i = index;" 
+          [text]="qry"
+          (badgetCreatedFn)="updateTextIndent($event)"
+          (removeBadgetFn)="removeBadget(i)">
+        </contact-list-badget>
+      </div>
     <button *ngIf="query.length > 1" class="shrink-0 p-2 rounded-full"><img width="18" height="18" src="assets/images/close.svg" alt="Clear search input" aria-label="Clear search input" (click)="clearSearchInput()" /></button>
     <contact-list-button [disabled]="query.length < 2" options="bg-gray-500 hover:bg-gray-700" optionsText="text-sm text-white" text="SEARCH" (btnClick)="searchContact()"></contact-list-button>
   </div>

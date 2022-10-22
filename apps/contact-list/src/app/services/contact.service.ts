@@ -21,7 +21,7 @@ export class ContactService {
     return this.http.get<IContact[]>(this.apiUrl)
   }
 
-  searchContact(query: string): Observable<IContact[]> {
+  searchContact(query: string[]): Observable<IContact[]> {
     const url = `${this.apiUrl}?search=${query}`
     return this.http.get<IContact[]>(url)
   }
