@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
+import { ContactService } from '../services/contact.service';
 import { UiService } from '../services/ui.service';
 
 @Component({
@@ -39,6 +40,7 @@ export class NavbarComponent implements OnInit {
     this.query.splice(id, 1)
     this.badgeElWidth.splice(id, 1)
     this.updateInputElement()
+    this.uiService.searchInputValue(this.query)
   }
 
   clearSearchInput() {
