@@ -23,29 +23,29 @@ describe('NavbarComponent', () => {
   });
 
   it('should have a query variable', () => {
-    expect(component.query).toBe('');
+    expect(component.search).toBe('');
   });
 
   it('#searchContact should get the query', () => {
-    const query = 'jose'
+    const search = 'jose'
     const searchInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
     const searchButton: HTMLButtonElement = fixture.nativeElement.querySelector('button');
     // simulate user entering a query
-    searchInput.value = query;
+    searchInput.value = search;
     searchInput.dispatchEvent(new Event('input'));    
     searchButton.dispatchEvent(new Event('click'));
     fixture.detectChanges();
-    expect(component.query).toBe(query);
+    expect(component.search).toBe(search);
   });
 
   it('#clearSearchInput should clear the search input', () => {
-   const query = 'jose'
-   component.query = query
+   const search = 'jose'
+   component.search = search
    fixture.detectChanges()
    const searchInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
-   expect(searchInput.value).toBe(query);
+   expect(searchInput.value).toBe(search);
    component.clearSearchInput()
    fixture.detectChanges()
-   expect(component.query).toEqual('')
+   expect(component.search).toEqual('')
   });
 });

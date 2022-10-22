@@ -24,10 +24,10 @@ describe('AddContactComponent', () => {
   });
 
   it('should have a form variables with default variables', () => {
-    expect(component.name).toEqual('')
-    expect(component.address).toEqual('')
-    expect(component.phone).toEqual('')
-    expect(component.email).toEqual('')
+    expect(component.newContact.name).toEqual('')
+    expect(component.newContact.address).toEqual('')
+    expect(component.newContact.phone).toEqual('')
+    expect(component.newContact.email).toEqual('')
     expect(component.showAddContact).toBeFalsy()
   })
 
