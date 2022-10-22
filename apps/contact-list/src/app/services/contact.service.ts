@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { IContact } from '@contact-list/api-interfaces';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -13,30 +14,29 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ContactService {
-  private apiUrl = 'http://localhost:3333/api/contacts'
 
   constructor(private http:HttpClient) { }
 
   getContacts(): Observable<IContact[]> {
-    return this.http.get<IContact[]>(this.apiUrl)
+    return this.http.get<IContact[]>(environment.apiUrl)
   }
 
   searchContact(query: string[]): Observable<IContact[]> {
-    const url = `${this.apiUrl}?search=${query}`
+    const url = `${environment.apiUrl}?search=${query}`
     return this.http.get<IContact[]>(url)
   }
 
   addContact(contact: IContact): Observable<IContact> {
-    return this.http.post<IContact>(this.apiUrl, contact, httpOptions);
+    return this.http.post<IContact>(environment.apiUrl, contact, httpOptions);
   }
 
   editContact(contact: any): Observable<IContact> {
-    const url = `${this.apiUrl}/${contact._id}`
+    const url = `${environment.apiUrl}/${contact._id}`
     return this.http.put<IContact>(url, contact, httpOptions);
   }
 
   deleteContact(contactId: string): Observable<IContact> {
-    const url = `${this.apiUrl}/${contactId}`
+    const url = `${environment.apiUrl}/${contactId}`
     return this.http.delete<IContact>(url)
   }
 }

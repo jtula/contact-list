@@ -2,11 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ContactService } from './contact.service';
 import { Contact } from '@contact-list/api-interfaces';
+import { environment } from '../../environments/environment';
 
 describe('ContactService', () => {
   let service: ContactService;
   let httpTestingController: HttpTestingController;
-  const apiUrl = 'http://localhost:3333/api/contacts'
+ 
   const mockContacts = [{ name: 'jose', address: 'Lorem', phone: '123', email: 'test@example.com'}]
 
   beforeEach(() => {
@@ -31,7 +32,7 @@ describe('ContactService', () => {
       done();
     });
 
-    const testRequest = httpTestingController.expectOne(apiUrl);
+    const testRequest = httpTestingController.expectOne(environment.apiUrl);
 
     testRequest.flush(expectedData);
   });
@@ -39,14 +40,14 @@ describe('ContactService', () => {
   it('#searchContact should filter out data', (done) => {
     const returnedData: Contact[] = mockContacts;
     const expectedData: Contact[] = mockContacts;
-    const filterContactName = 'jose'
+    const filterContactName = ['jose']
 
     service.searchContact(filterContactName).subscribe(data => {
       expect(data).toEqual(expectedData);
       done();
     });
 
-    const testRequest = httpTestingController.expectOne(`${apiUrl}?search=${filterContactName}`);
+    const testRequest = httpTestingController.expectOne(`${environment.apiUrl}?search=${filterContactName}`);
     testRequest.flush(returnedData);
   });
 
